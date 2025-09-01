@@ -22,7 +22,7 @@ pipeline {
         stage('SonarQube Scan') {
             steps {
                 withSonarQubeEnv('sonar-scanner') {
-                    sh 'npx sonar-scanner -Dsonar.projectKey=sample-express-app'
+                    sh 'npx sonar-scanner -Dsonar.projectKey=simple-express-app'
                 }
             }
         }
