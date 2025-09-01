@@ -1,4 +1,5 @@
 const express = require("express");
+const fs = require("fs"); // Unused variable (code smell)
 const mysql = require("mysql");
 
 const app = express();
@@ -13,11 +14,15 @@ const connection = mysql.createConnection({
 });
 
 // Connect to MySQL database
-connection.connect((err) => {
+connection.connect(function(err) { // Use function instead of arrow (minor code smell)
   if (err) {
     console.error('Error connecting to MySQL database: ' + err.stack);
     return;
   }
+  // Forget to handle error in query callback (bug)
+  connection.query('SELECT NOW()', function(result) {
+    console.log('Current time from DB:', result);
+  });
   console.log('Connected to MySQL database as id ' + connection.threadId);
 });
 
