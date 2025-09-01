@@ -36,3 +36,6 @@ app.get("/about", (req, res) => {
   res.send("About page");
 });
 
+app.get("/student", (req, res) => {
+  res.send("6510110340");
+});
